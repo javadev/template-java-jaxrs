@@ -10,17 +10,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/xmltojson")
+@Path("/jsontoxml")
 @Produces(MediaType.APPLICATION_JSON)
-public class XmlService {
+public class JsonService {
 
     @POST
     public Map<String, Object> post(Map<String, Object> data) {
         Map<String, Object> result = new LinkedHashMap<>();
         try {
-            result.put("json", U.xmlToJson(String.valueOf(data.get("xml"))));
+            result.put("xml", U.jsonToXml(String.valueOf(data.get("json"))));
         } catch(Exception ex) {
-            result.put("json", null);
+            result.put("xml", null);
             result.put("error", ex.getMessage());
         }
         return result;
